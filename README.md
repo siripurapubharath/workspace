@@ -13,6 +13,7 @@ iii) aws configure must be done (access_key, secret_key, region)
 iv) ec2.py & ec2.ini must be installed
 
 #create a demo.yml file with below content
+
 ---
 - name: Provision instances in AWS
   hosts: localhost
@@ -50,16 +51,16 @@ iv) ec2.py & ec2.ini must be installed
 #group_vars/all
 ---
 # AWS specific variables
-ec2_access_key: XXXXXXXXXXXXXXXX
-ec2_secret_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-ec2_region: ap-south-1
-ec2_image: ami-04ea996e7a3e7ad6b
-ec2_instance_type: t2.micro
-ec2_keypair: mumbaikeypair
-ec2_security_group: default
-ec2_tag_name_prefix: test
-ec2_hosts: all
-wait_for_port: 22
+#ec2_access_key: XXXXXXXXXXXXXXXX
+#ec2_secret_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#ec2_region: ap-south-1
+#ec2_image: ami-04ea996e7a3e7ad6b
+#ec2_instance_type: t2.micro
+#ec2_keypair: mumbaikeypair
+#ec2_security_group: default
+#ec2_tag_name_prefix: test
+#ec2_hosts: all
+#wait_for_port: 22
 
 #execute .yml file as below to create two instances
 
