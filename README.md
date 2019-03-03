@@ -68,7 +68,7 @@ iv) ec2.py & ec2.ini must be installed
 
 $ ansible-playbook demo.yml
 
-########################################################################################################################################
+##################################################################################
 
 b) using Terraform
 
@@ -104,7 +104,7 @@ $ teraform init msrtest.tf
 $ teraform plan msrtest.tf
 $ teraform apply msrtest.tf 
 
-######################################################################################################################################
+##################################################################################
 
 2) Once these two servers are provisioned, ensure the below following software packages are installed using configuration management tool in both the provisioned instances.
 
@@ -171,7 +171,7 @@ Using Ansible:
 
 $ ansible-playbook -i ec2.py msrpackages.yml -e ansible_python_interpreter=/usr/bin/python3 
 
-########################################################################################################################################
+##################################################################################
 
 3) Create a Docker Container in MSR-test-Instance-1 using Docker Compose file and ensure apache webserver is installed. Try to use configuration management tools to automate the entire installation of apache and deploy a sample html file from a GitHub repository.
 
@@ -216,7 +216,7 @@ Using Ansible: to create docker container of Apache webserver on  MSR-test-Insta
 
 $ ansible-playbook -i ec2.py docker-webapp.yml -e ansible_python_interpreter=/usr/bin/python3
 
-########################################################################################################################################
+##################################################################################
 
 4) Create a Docker Container in MSR-test-Instance-2 using Docker Compose file and ensure CouchDB  Database is installed. Try to use any configuration management tool to automate the entire installation processes. 
 
