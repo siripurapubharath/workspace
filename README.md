@@ -21,9 +21,8 @@ iv) ec2.py & ec2.ini must be installed
 	  connection: local
 	  gather_facts: False
   
-# loading AWS variables from below file
-  
-	vars_files:
+	#loading AWS variables from below file
+  	vars_files:
   	  - group_vars/all
 
   	tasks:
