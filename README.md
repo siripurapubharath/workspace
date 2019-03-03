@@ -1,9 +1,15 @@
 1) Create two EC2 Instances in AWS Cloud.
+
 a) Using Ansible
+
 pre-requisites:
+
 i) Ansible must me installed (dependencies: python, python-devel, python-pip, openssl)
+
 ii) awscli & boto must be installed (pip install awscli, pip install boto)
+
 iii) aws configure must be done (access_key, secret_key, region)
+
 iv) ec2.py & ec2.ini must be installed
 
 #create a demo.yml file with below content
