@@ -15,7 +15,6 @@ iv) ec2.py & ec2.ini must be installed
 # create a demo.yml file with below content
 
 	---
-
 	- name: Provision instances in AWS
           hosts: localhost
 	  connection: local
@@ -179,9 +178,9 @@ Using Ansible: to create docker container of Apache webserver on  MSR-test-Insta
 
 1) first create a docker-compose.yml file in /tmp on Ansible master with below details 
 
-	version: '3'
-	services:
-  	  apache:
+    	version: '3'
+   	services:
+   	  apache:
     	    image: bitnami/apache
     	    container_name: webapp
     	    ports:
@@ -190,27 +189,28 @@ Using Ansible: to create docker container of Apache webserver on  MSR-test-Insta
       	      - /tmp/html:/opt/bitnami/apache/htdocs
 
 2) now create an docker-webapp.yml file to achive above requirement.
-	---
-	- hosts: 13.233.207.188
-  	  remote_user: ubuntu
-  	  become: yes
-  	  gather_facts: yes
-  	  become_user: root
-  	  become_method: sudo
-	  tasks:
-  	  - name: Upload a file to the remote host
-    	    copy:
-      	      src: /tmp/docker-compose.yml
-      	      dest: /var/lib/docker/
-     	      mode: 0755
+        
+	   ---
+	   - hosts: 13.233.207.188
+  	     remote_user: ubuntu
+  	     become: yes
+  	     gather_facts: yes
+  	     become_user: root
+  	     become_method: sudo
+	     tasks:
+  	     - name: Upload a file to the remote host
+    	       copy:
+      	         src: /tmp/docker-compose.yml
+      	         dest: /var/lib/docker/
+     	         mode: 0755
 	      
-	  - name: pulling index.html from git hub
-    	    shell: >
-        	cd /tmp && git clone https://github.com/siripurapubharath/html.git
+	     - name: pulling index.html from git hub
+    	       shell: >
+        	   cd /tmp && git clone https://github.com/siripurapubharath/html.git
 		
-	  - name: move to /var/lib/docker & bringing up container
-    	    shell: >
-        	 cd /var/lib/docker && docker-compose up -d
+	     - name: move to /var/lib/docker & bringing up container
+    	       shell: >
+        	   cd /var/lib/docker && docker-compose up -d
 	
 # now to achive the above requirement execute the below command.
 
@@ -222,35 +222,36 @@ $ ansible-playbook -i ec2.py docker-webapp.yml -e ansible_python_interpreter=/us
 
 Using Ansible: to create docker container of CouchDB on  MSR-test-Instance-2.
 
-1) first create a docker-compose.yml file in /tmp on Ansible master with below details 
+1) first create a docker-compose.yml file in /tmp on Ansible master with below details
 
-	version: '3'
-	services:
-   	   db:
-            image: couchdb:latest
-            container_name: couch_db
-            ports:
-               - 80:5984
+	   version: '3'
+	   services:
+   	      db:
+               image: couchdb:latest
+               container_name: couch_db
+               ports:
+                  - 80:5984
 
 2) now create an docker-db.yml file to achive above requirement.
-	---
-	- hosts: 13.233.207.188
-  	  remote_user: ubuntu
-  	  become: yes
-  	  gather_facts: yes
-  	  become_user: root
-  	  become_method: sudo
-	  tasks:
+	
+	   ---
+	   - hosts: 13.233.207.188
+  	     remote_user: ubuntu
+  	     become: yes
+  	     gather_facts: yes
+  	     become_user: root
+  	     become_method: sudo
+	     tasks:
   
-  	- name: Upload a file to the remote host
-    	  copy:
-            src: /tmp/docker-compose.yml
-            dest: /var/lib/docker/
-            mode: 0755
+  	   - name: Upload a file to the remote host
+    	     copy:
+               src: /tmp/docker-compose.yml
+               dest: /var/lib/docker/
+               mode: 0755
 
-  	- name: move to /var/lib/docker & bringing up container
-        shell: >
-    	     cd /var/lib/docker && docker-compose up -d
+  	   - name: move to /var/lib/docker & bringing up container
+             shell: >
+    	         cd /var/lib/docker && docker-compose up -d
 
 # now to achive the above requirement execute the below command.
 
