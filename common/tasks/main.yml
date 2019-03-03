@@ -1,0 +1,42 @@
+---
+- name: installing required packages
+  apt:
+     name: ['software-properties-common', 'openssl', 'git']
+     state: present
+
+- name: getting pip
+  shell: curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+
+- name: installing pip
+  shell: python3 get-pip.py
+
+- name: Install nvm-0.33.2
+  shell: >
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | sh
+    creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
+
+- name: Installing node and set version-8.12.0
+  shell: >
+    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 8.12.0 && nvm alias default 8.12.0"
+    creates=/home/{{ ansible_user_id }}/.nvm/alia
+
+- name: adding docker gpg
+  shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+- name: adding docker repo
+  shell: add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+
+- name: updating all packages
+  shell: apt update
+
+- name: installing docker-engine latest
+  package:
+    name: docker-ce
+    state: present
+  notify:
+     - startservice
+
+- name: installing docker-compose latest
+  pip:
+    name: docker-compose
+    state: latest

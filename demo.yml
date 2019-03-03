@@ -1,0 +1,34 @@
+---
+- name: Provision instances in AWS
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  # load AWS variables from this file
+  vars_files:
+  - group_vars/all
+
+  tasks:
+  - name: MSR-test-instance-1
+    ec2:
+      access_key: "{{ ec2_access_key }}"
+      secret_key: "{{ ec2_secret_key }}"
+      keypair: "{{ ec2_keypair }}"
+      group: "{{ ec2_security_group }}"
+      type: "{{ ec2_instance_type }}"
+      image: "{{ ec2_image }}"
+      region: "{{ ec2_region }}"
+      instance_tags: "{'Name':'MSR-test-instance-1'}"
+      wait: true
+
+  - name: MSR-test-instance-2
+    ec2:
+      access_key: "{{ ec2_access_key }}"
+      secret_key: "{{ ec2_secret_key }}"
+      keypair: "{{ ec2_keypair }}"
+      group: "{{ ec2_security_group }}"
+      type: "{{ ec2_instance_type }}"
+      image: "{{ ec2_image }}"
+      region: "{{ ec2_region }}"
+      instance_tags: "{'Name':'MSR-test-instance-2'}"
+      wait: true

@@ -1,0 +1,4 @@
+- name: startservice
+  service:
+        name: docker
+        state: restarted

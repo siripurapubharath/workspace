@@ -1,0 +1,13 @@
+---
+# AWS specific variables
+ec2_access_key: AKIAIZ3GQE57E4PFMTGA
+ec2_secret_key: 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
+ec2_region: ap-south-1
+ec2_image: ami-04ea996e7a3e7ad6b
+ec2_instance_type: t2.micro
+ec2_keypair: mumbaikeypair
+ec2_security_group: default
+ec2_tag: demo
+ec2_tag_name_prefix: test
+ec2_hosts: all
+wait_for_port: 22

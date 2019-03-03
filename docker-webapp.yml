@@ -1,0 +1,23 @@
+---
+- hosts: 13.233.207.188
+  remote_user: ubuntu
+  become: yes
+  gather_facts: yes
+  become_user: root
+  become_method: sudo
+
+  tasks:
+  - name: Upload a file to the remote host
+    copy:
+      src: /tmp/docker-compose.yml
+      dest: /var/lib/docker/
+      mode: 0755
+
+  - name: pulling index.html from git hub
+    shell: >
+         cd /tmp && git clone https://github.com/siripurapubharath/html.git
+
+  - name: move to /var/lib/docker & bringing up container
+    shell: >
+         cd /var/lib/docker && docker-compose up -d
+
